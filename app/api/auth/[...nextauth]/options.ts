@@ -45,7 +45,14 @@ export const authOptions: NextAuthOptions = {
             throw new Error("Invalid password");
           }
 
-          return user;
+          return {
+            id: user._id.toString(),
+            _id: user._id.toString(),
+            email: user.email,
+            username: user.username,
+            isVerified: user.isVerified,
+            isAcceptingMessage: user.isAcceptingMessage,
+          };
         } catch (error) {
           if (error instanceof Error) {
             throw error;
